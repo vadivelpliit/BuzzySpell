@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🐝 AI-Powered Spelling Bee & Reading Coach
 
 A gamified educational web application designed for elementary school students (primarily 2nd grade) to prepare for Spelling Bee contests and improve English literacy skills.
@@ -276,3 +277,7 @@ For issues or questions, please create an issue in the repository.
 ---
 
 Built with ❤️ for young learners preparing for spelling bee contests and improving their literacy skills.
+=======
+# BuzzySpell
+Learn english in a fun way
+>>>>>>> ca4dadc6e7c1409dbbc09004f96560cd281bc78a
