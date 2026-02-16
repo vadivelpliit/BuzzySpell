@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-hive-light text-gray-900 font-child;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-bee-yellow hover:bg-bee-gold text-gray-900 font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-200 hover:scale-105 active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply bg-sky hover:bg-blue-400 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-200 hover:scale-105 active:scale-95;
+  }
+  
+  .card {
+    @apply bg-white rounded-2xl shadow-xl p-6 transition-all duration-200 hover:shadow-2xl;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 text-xl border-4 border-bee-yellow rounded-xl focus:outline-none focus:border-bee-gold focus:ring-2 focus:ring-bee-orange;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes shine {
+  0% { background-position: -200%; }
+  100% { background-position: 200%; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 0.5s ease-in-out infinite;
+}
+
+.animate-shine {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  background-size: 200% 100%;
+  animation: shine 2s infinite;
+}
+
+/* Flip card animation */
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
