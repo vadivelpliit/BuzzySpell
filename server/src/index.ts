@@ -14,6 +14,11 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Trust first proxy (Railway, Vercel, etc.) so X-Forwarded-For is used for rate limiting
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+}
+
 // Middleware
 app.use(helmet());
 app.use(cors({
@@ -28,6 +33,15 @@ app.use(generalLimiter);
 // Routes
 app.use('/api/content', contentRoutes);
 app.use('/api/user', userRoutes);
+
+// API base (so GET /api returns something instead of 404)
+app.get('/api', (req, res) => {
+  res.json({
+    ok: true,
+    message: 'Buzzyspell API',
+    endpoints: { user: '/api/user', content: '/api/content' },
+  });
+});
 
 // Health check
 app.get('/health', (req, res) => {
