@@ -59,12 +59,13 @@ In the service → **Variables**, add:
 1. Go to [vercel.com](https://vercel.com) and sign in (e.g. with GitHub).
 2. **Add New** → **Project** → Import your `english_app` repo.
 
-### 2.2 Configure root and build
+### 2.2 Configure root and build (critical for monorepo)
 
-1. Set **Root Directory** to: `client` (then **Edit** next to it and type `client`).
+1. **Root Directory:** Click **Edit** next to "Root Directory" and set it to **`client`**. If this is wrong or empty, Vercel builds from the repo root and you get **404** on the site.
 2. **Framework Preset:** Vite (usually auto-detected).
-3. **Build Command:** `npm run build` (default is fine).
-4. **Output Directory:** `dist` (default for Vite).
+3. **Build Command:** `npm run build`.
+4. **Output Directory:** `dist`.
+5. **Install Command:** leave default (`npm install`).
 
 ### 2.3 Environment variable (Vercel)
 
@@ -104,3 +105,19 @@ Add it for **Production** (and Preview if you want).
 
 - **Railway:** Push to `main` (if connected to GitHub) or click **Deploy** in the dashboard.
 - **Vercel:** Push to `main` (or the connected branch); Vercel will auto-deploy.
+- **After changing env vars on Vercel:** You must **redeploy** (Deployments → ⋮ → Redeploy). `VITE_*` values are baked in at build time.
+
+---
+
+## 5. Troubleshooting 404 on the frontend
+
+If **https://your-app.vercel.app/** shows **404: NOT_FOUND** (and the API works when opened directly):
+
+1. **Root Directory must be `client`**  
+   Vercel → Project → **Settings** → **General** → **Root Directory** → set to **`client`** (not empty, not the repo root). Save and **redeploy**.
+
+2. **Confirm build output**  
+   After a deploy, open the **Deployments** tab → latest deployment → **Building** log. The build should run in the `client` folder and produce `dist/index.html`. If the build failed or ran in the wrong folder, fix Root Directory and redeploy.
+
+3. **SPA rewrites**  
+   The repo has `client/vercel.json` with a rewrite so all routes serve `index.html`. Ensure that file is committed and that the latest commit is deployed.
