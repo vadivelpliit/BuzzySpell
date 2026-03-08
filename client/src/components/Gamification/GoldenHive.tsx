@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { MasteredWord, userApi } from '../../services/api';
 import { useUser } from '../../contexts/UserContext';
 import speechService from '../../utils/speechService';

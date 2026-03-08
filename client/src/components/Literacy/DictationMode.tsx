@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import speechService from '../../utils/speechService';
 
 const dictationSentences = [
@@ -134,22 +134,6 @@ export default function DictationMode() {
       default:
         return 'Check this part carefully';
     }
-  };
-
-  const highlightErrors = () => {
-    if (!showFeedback || errors.length === 0) return userInput;
-
-    const expectedWords = currentSentence.toLowerCase().replace(/[.,!?]/g, '').split(' ');
-    const actualWords = userInput.toLowerCase().replace(/[.,!?]/g, '').split(' ');
-
-    return actualWords.map((word, idx) => {
-      const hasError = errors.some(e => e.position === idx && e.type === 'spelling');
-      return (
-        <span key={idx} className={hasError ? 'bg-red-200 px-1 rounded' : ''}>
-          {word}{' '}
-        </span>
-      );
-    });
   };
 
   return (

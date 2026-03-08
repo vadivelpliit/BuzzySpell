@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { userApi } from '../../services/api';
 import { useUser } from '../../contexts/UserContext';
 
@@ -10,7 +10,7 @@ interface DailyStreak {
 
 export default function ProgressTracker() {
   const { currentUser } = useUser();
-  const [streaks, setStreaks] = useState<DailyStreak[]>([]);
+  const [_streaks, _setStreaks] = useState<DailyStreak[]>([]);
   const [currentStreak, setCurrentStreak] = useState(0);
   const [loading, setLoading] = useState(true);
 

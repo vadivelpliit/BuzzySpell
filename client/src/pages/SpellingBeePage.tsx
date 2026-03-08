@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { contentApi, userApi, SpellingWord } from '../services/api';
 import { useUser } from '../contexts/UserContext';

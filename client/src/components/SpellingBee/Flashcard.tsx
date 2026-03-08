@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SpellingWord } from '../../services/api';
 import speechService from '../../utils/speechService';
 

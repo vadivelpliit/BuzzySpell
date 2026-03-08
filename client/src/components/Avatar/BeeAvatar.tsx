@@ -1,4 +1,3 @@
-import React from 'react';
 import { Avatar } from '../../services/api';
 
 interface BeeAvatarProps {
@@ -55,7 +54,6 @@ export default function BeeAvatar({ avatar, size = 'medium', showStats = false }
     }
   };
 
-  const xpToNextLevel = (avatar.current_level) * 1000;
   const xpProgress = (avatar.total_xp % 1000) / 1000 * 100;
 
   return (
