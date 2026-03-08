@@ -15,13 +15,16 @@ const db = new Database(dbPath);
 db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');
 
-// Run migrations
-export function runMigrations() {
+// Run migrations immediately so tables exist before any prepare() below
+function runMigrations() {
   const schemaPath = path.join(__dirname, 'schema.sql');
   const schema = fs.readFileSync(schemaPath, 'utf-8');
   db.exec(schema);
   console.log('Database migrations completed successfully');
 }
+runMigrations();
+
+export { runMigrations };
 
 // User operations
 export const userQueries = {

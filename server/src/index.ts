@@ -2,16 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
-import { runMigrations } from './database/db';
+import './database/db'; // loads DB and runs migrations before any routes
 import { generalLimiter } from './middleware/rateLimiter';
 import contentRoutes from './routes/content.routes';
 import userRoutes from './routes/user.routes';
 
 // Load environment variables
 dotenv.config();
-
-// Initialize database
-runMigrations();
 
 // Create Express app
 const app = express();
