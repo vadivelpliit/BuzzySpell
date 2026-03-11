@@ -36,11 +36,11 @@ export class OpenAIService {
     
     try {
       const response = await openai.chat.completions.create({
-        model: 'gpt-4',
+        model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
         messages: [
           {
             role: 'system',
-            content: 'You are an expert elementary school teacher specializing in spelling bee preparation. Generate age-appropriate spelling words with educational value.',
+            content: 'You are an expert elementary school teacher specializing in spelling bee preparation. Generate age-appropriate spelling words with educational value. Always respond with valid JSON only.',
           },
           {
             role: 'user',
@@ -67,11 +67,11 @@ export class OpenAIService {
     
     try {
       const response = await openai.chat.completions.create({
-        model: 'gpt-4',
+        model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
         messages: [
           {
             role: 'system',
-            content: 'You are an expert children\'s author and educator. Create engaging, age-appropriate stories with comprehension questions.',
+            content: 'You are an expert children\'s author and educator. Create engaging, age-appropriate stories with comprehension questions. Always respond with valid JSON only.',
           },
           {
             role: 'user',
