@@ -25,8 +25,16 @@ export default function FillInBlanks({
   const [feedback, setFeedback] = useState<{ correct: boolean; hints: string[] } | null>(null);
   const [showDefinition, setShowDefinition] = useState(false);
 
+  // Reset input and feedback when moving to the next word so the text box is editable again
   useEffect(() => {
-    // Auto-play audio on mount
+    setUserInput('');
+    setFeedback(null);
+    setShowHint(false);
+    setShowDefinition(false);
+  }, [word.word]);
+
+  useEffect(() => {
+    // Auto-play audio when word changes
     handleSpeak();
   }, [word]);
 
